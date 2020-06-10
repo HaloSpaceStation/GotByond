@@ -23,13 +23,13 @@ func unmarshallArguments(argc int, argv **C.char) []string {
 //export sendGetRequest
 func sendGetRequest(argc int, argv **C.char) *C.char {
 	args := unmarshallArguments(argc, argv)
-	
+
 	if len(args) < 2 {
 		return C.CString("status=0&error=Invalid+Arguments")
 	}
-	
+
 	request := req.New()
-	requestURL := fmt.Sprintf("%s%s", args[0], args[1])
+	requestURL := fmt.Sprintf("%s?%s", args[0], args[1])
 
 	var requestHeaders req.Header = nil
 	if len(args) >= 4 {
