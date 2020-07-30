@@ -7,8 +7,6 @@ import (
 	"net/url"
 	"unsafe"
 
-	_ "./proc"
-
 	"github.com/imroc/req"
 )
 
