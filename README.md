@@ -5,7 +5,7 @@ A WIP web requests library for Byond, written in Go.
 ## Current and Planned Features
 
 - [x] GET Requests
-- [ ] POST Requests
+- [x] POST Requests
 
 ### Why GET requests? Doesn't BYOND already support that?
 
