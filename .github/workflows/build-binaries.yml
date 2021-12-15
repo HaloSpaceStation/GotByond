@@ -1,0 +1,31 @@
+name: Build shared objects
+
+on:
+  push:
+    branches:
+      - master
+      
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build
+        run: |
+          env GOOS=linux GOARCH=386 CGO_ENABLED=1 make release
+          mv gotbyond gotbyond.so
+          env GOOS=win GOARCH=386 CGO_ENABLED=1 CC_FOR_TARGET=i686-w64-mingw32-gcc make release
+          mv gotbyond gotbyond.dll
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: gotbyond-win
+          path: gotbyond.dll
+          if-no-files-found: error
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: gotbyond-linux
+          path: gotbyond.so
