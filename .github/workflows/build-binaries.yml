@@ -12,6 +12,8 @@ jobs:
     
     steps:
       - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: go get github.com/imroc/req
       - name: Build
         run: |
           env GOOS=linux GOARCH=386 CGO_ENABLED=1 make release
