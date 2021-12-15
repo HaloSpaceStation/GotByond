@@ -28,8 +28,7 @@ jobs:
         run: |
           env GOOS=linux GOARCH=386 CGO_ENABLED=1 make release
           mv gotbyond gotbyond.so
-          env GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc make release
-          mv gotbyond gotbyond.dll
+          env GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc make release-windows
       - name: Upload Windows artifact
         uses: actions/upload-artifact@v2
         with:
